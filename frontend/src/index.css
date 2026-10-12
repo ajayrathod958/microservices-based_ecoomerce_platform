@@ -1,0 +1,37 @@
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/figtree';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-chalk font-sans text-ink antialiased; }
+  h1, h2, h3 { @apply font-display tracking-tight; }
+  :focus-visible { @apply outline outline-2 outline-offset-2 outline-ink; }
+}
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply bg-ink text-chalk hover:bg-ink-soft; }
+  .btn-tag { @apply bg-tag text-ink hover:bg-tag-deep; }
+  .btn-secondary { @apply border border-line bg-white text-ink hover:border-ink; }
+  .btn-danger { @apply bg-rust text-white hover:bg-red-800; }
+  .btn-ghost { @apply text-ink hover:bg-chalk-deep; }
+  .input { @apply w-full rounded-md border border-line bg-white px-3 py-2 text-sm text-ink placeholder:text-moss/70 focus:border-ink; }
+  .input-error { @apply border-rust; }
+  .label { @apply mb-1 block text-sm font-medium; }
+  .panel { @apply rounded-md border border-line bg-white; }
+  /* The one signature element: a shop price tag with a notch and a punched hole. */
+  .price-tag {
+    @apply relative inline-flex items-center bg-tag py-1 pl-5 pr-3 font-display font-bold text-ink;
+    clip-path: polygon(12px 0, 100% 0, 100% 100%, 12px 100%, 0 50%);
+  }
+  .price-tag::before {
+    content: ''; @apply absolute left-2 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-chalk;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

@@ -1,0 +1,63 @@
+server:
+  port: 8082
+  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: product-service
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:productdb}
+    username: ${DB_USER:microshop}
+    password: ${DB_PASSWORD:microshop_pw}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate          # schema is owned by Flyway
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    # db/seed holds demo catalogue data. In production use FLYWAY_LOCATIONS=classpath:db/migration
+    locations: ${FLYWAY_LOCATIONS:classpath:db/migration,classpath:db/seed}
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+    web:
+      pageable:
+        max-page-size: 100
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+  instance:
+    prefer-ip-address: true
+
+security:
+  internal-token: ${INTERNAL_TOKEN:dev-only-internal-token-change-me}
+
+app:
+  cache:
+    product-ttl: 10m      # single product details
+    page-ttl: 2m          # listings / search results
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{correlationId:-}]"

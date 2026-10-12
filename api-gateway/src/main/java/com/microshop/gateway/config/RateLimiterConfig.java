@@ -8,10 +8,7 @@ import reactor.core.publisher.Mono;
 
 import java.net.InetSocketAddress;
 
-/**
- * Rate-limit key = client IP. Uses the first X-Forwarded-For entry when present
- * (gateway sits behind nginx / a load balancer in Docker), else the socket address.
- */
+
 @Configuration
 public class RateLimiterConfig {
 

@@ -7,10 +7,6 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-/**
- * Exposes every service's /v3/api-docs under /docs/{service}/v3/api-docs so the gateway's
- * Swagger UI (configured in application.yml) can aggregate them behind a single origin.
- */
 @Configuration
 public class OpenApiRoutesConfig {
 

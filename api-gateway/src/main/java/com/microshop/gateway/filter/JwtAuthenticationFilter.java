@@ -32,14 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- * Validates the Bearer JWT and forwards the caller's identity to downstream services as headers.
- *
- * - Identity headers sent by the client are ALWAYS stripped (anti-spoofing).
- * - Protected routes without a valid access token get a JSON 401.
- * - Public routes work anonymously; a valid token is still honoured so handlers can personalise.
- * - The Authorization header is not forwarded; services trust the identity headers + internal token.
- */
+
 @Slf4j
 @Component
 public class JwtAuthenticationFilter implements GlobalFilter, Ordered {

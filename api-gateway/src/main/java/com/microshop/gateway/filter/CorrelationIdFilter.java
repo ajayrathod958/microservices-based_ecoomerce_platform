@@ -12,11 +12,7 @@ import reactor.core.publisher.Mono;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
-/**
- * Ensures every request carries an X-Correlation-Id that is forwarded downstream
- * and echoed back to the caller. Untrusted incoming values are only accepted if they
- * look like a safe identifier (prevents log/header injection).
- */
+
 @Slf4j
 @Component
 public class CorrelationIdFilter implements GlobalFilter, Ordered {
